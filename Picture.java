@@ -367,7 +367,58 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+//written by Jonathan Hsing
+public void sepiaTone(){
+    
+    //create a pixel array 
+    Pixel[][]pixels = this.getPixels2D();
+    //create pixel variable
+    Pixel pixel = null;
+    //create rgb variables
+    int red = 0;
+    int blue = 0;
+    int green = 0;
+    //create sepia variables
+    int sepR, sepB, sepG = 0;
 
+    //nested for loops
+    for(int r = 0; r < pixels.length; r++){
+      for(int c = 0; c < pixels[0].length; c++){
+        //get the current pixel
+        pixel = pixels[r][c];
+
+        //get the color values
+        red = pixel.getRed();
+        green = pixel.getGreen();
+        blue = pixel.getBlue();
+
+        //convert to sepia colors
+        sepR = (int)((0.393 * red) + (0.769 * green) + (0.189 * blue));
+        sepG = (int)((0.349 * red) + (0.686 * green) + (0.168 * blue));
+        sepB = (int)((0.272 * red) + (0.534 * green) + (0.131 * blue));
+
+        //check if values are in bounds
+        if(sepR > 255){
+          sepR = 255;
+        }
+
+        if(sepG > 255){
+          sepG = 255;
+        }
+
+        if(sepB > 255){
+          sepB = 255;
+        }
+
+        //set the pixels
+        pixel.setRed(sepR);
+        pixel.setGreen(sepG);
+        pixel.setBlue(sepB);
+
+      }
+    }
+
+  }
    
 
 
